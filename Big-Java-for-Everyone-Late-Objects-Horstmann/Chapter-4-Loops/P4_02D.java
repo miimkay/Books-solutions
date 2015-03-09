@@ -9,23 +9,21 @@
 import java.util.Scanner;
 
 public class P4_02D {
-    public static void main(String[] args) {
-	Scanner input = new Scanner(System.in);
-	String adjacent_duplicates = "";
-	System.out.print("Number: ");
-	double input_number = input.nextDouble();
-	double previous = input_number;
-	boolean first_input = true;
-	while (input.hasNextDouble()) {
-	    System.out.print("Number: ");
-	    input_number = input.nextDouble();
-	    if (first_input != true && input_number == previous) {
-		adjacent_duplicates += String.format("%s ", input_number);
-	    }
-	    first_input = false;
-	    previous = input_number;
-	}
-	input.close();
-	System.out.println(adjacent_duplicates);
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+
+    System.out.print("Enter Number Sequence(q to quit): ");
+    double input = in.nextDouble();
+    while (in.hasNextDouble()) {
+      double prev = input;
+      input = in.nextDouble();
+      if (input == prev) {
+        while (input == prev && in.hasNextDouble()) {
+          prev = input;
+          input = in.nextDouble();
+        }
+        System.out.print(prev + " ");
+      }
     }
+  }
 }
